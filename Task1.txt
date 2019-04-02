@@ -3,6 +3,7 @@
 #Method has to be POST.
 #Headers are set as; Key: Content-Type, Value: application/graphql
 #Insert the queries in the Body section of Postman.
+#API Used (Finland): https://api.digitransit.fi/routing/v1/routers/finland/index/graphql
 
 *****Body for Question No. 1*****
 
