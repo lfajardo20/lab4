@@ -1,0 +1,22 @@
+#Some setup is required to go through these queries are required to go through this process
+#I have used Postman to verify these work. Please use the following pecifications for all queries.
+#Method has to be POST.
+#Headers are set as; Key: Content-Type, Value: application/graphql
+#Insert the queries in the Body section of Postman.
+
+*****Body for Question No. 1*****
+
+{
+  routes(name: "588", transportModes: BUS) {
+    gtfsId
+    shortName
+    longName
+    mode
+    stops {
+        name
+    }
+  }
+}
+
+*****Body for Question No. 2*****
+
