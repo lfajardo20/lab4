@@ -8,4 +8,5 @@ Inside the file of Task1.txt is the proper configurations/steps used to test my 
 //TODO: Later implement apache
 -"ant deploy" Will deploy the WAR file into the tomcat server.
 -"http://localhost:8080/RestExampleAPI/rest/authors/" This url is the url to be used for the methods on Post Man.
-//TODO: Only first method works
+-Every method invocation send the appropriate message according to the specifications on the lab. Ever verb is given based on the verbs from the BooktownREST Example.
+-One tomcat only implemented
