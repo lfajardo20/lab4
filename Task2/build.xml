@@ -19,20 +19,20 @@
   	<copy file="${properties}/rdbm.properties" todir="${destdir}/WEB-INF/classes/"/>
   </target>
 
-  <target name="build" depends="compile,apidoc">
+  <target name="build" depends="compile">
     <copy file="web.xml" todir="${destdir}/WEB-INF"/>
-  	<copy todir="${destdir}/${apidocdir}">
+  	<!-- <copy todir="${destdir}/${apidocdir}">
   		<fileset dir="${apidocdir}"/>
-  	</copy>
+  	</copy> -->
     <war destfile="${warfile}" basedir="${destdir}" needxmlfile="false"/>
   </target>
 
-  <target name="apidoc">
+  <!-- <target name="apidoc">
 	<mkdir dir="${apidocdir}"/>
   	<exec dir="." executable="apidoc">
   		<arg line="-i ./${srcdir} -o ./${apidocdir}"/>
   	</exec>
-  </target>
+  </target> -->
 
   <target name="deploy" depends="build">
     <copy file="${warfile}" todir="${tomcat_webapps}" />
@@ -48,7 +48,8 @@
     <delete file="${warfile}" />
   	<delete file="${submit.jar}" />
     <delete dir="${destdir}"/>
-  	<delete dir="${apidocdir}"/>
+    <delete file="${tomcat_webapps}/${warfile}" />
+  	<!-- <delete dir="${apidocdir}"/> -->
   </target>
 
   <target name="undeploy">
