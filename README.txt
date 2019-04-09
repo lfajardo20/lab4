@@ -3,7 +3,8 @@ Inside the file of Task1.txt is the proper configurations/steps used to test my 
 
 *****TASK 2*****
 -ActiveMQ-all.jar is the jar file NECESSARY to run this section. Please place it inside of the "lib" folder.
--Start the ActiveMQ console without any configurations from the default download on activeMQ's website. (this will start the broker so it is necessary in order to test the lab 
+-For the consumer, place the same jar file OUTSIDE of the Task2 folder (where the Consumer.java is in). It is NECESSARY to have that jar in the same direcory.
+-Start the ActiveMQ console without any configurations from the default download on activeMQ's website. (this will start the broker so it is necessary in order to test the lab)
 -Start the broker by running "bin/activemq console" under your apachemq folders/installation
 -Start the tomcat servers (8080 and 8081)
 -Start your apache httpd.exe
