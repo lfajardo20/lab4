@@ -88,8 +88,8 @@ public class AuthorResource {
 			MessageProducer producer = session.createProducer(destination);
 			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
-			TextMessage msg = session.createTextMessage("Timestamp: " + timestamp + " ; URL Path: " + context.getContextPath()
-					+ url + " ; HTTP Verb: " + verb + " ; Response Code: " + respCode);
+			TextMessage msg = session.createTextMessage("Timestamp: " + timestamp + " ; URL Path: " + url
+					+ " ; HTTP Verb: " + verb + " ; Response Code: " + respCode);
 			producer.send(msg);
 
 			session.close();
@@ -105,7 +105,7 @@ public class AuthorResource {
 
 		String date = timestamp.getDate().toString();
 
-		jmsLogger(date, "/rest/authors", "GET", 204);
+		jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "GET", 204);
 
 		// int code = Response.StatusType.getStatusCode();
 		return __bService.getAuthors();
@@ -180,14 +180,15 @@ public class AuthorResource {
 		String date = timestamp.getDate().toString();
 		int aid = __bService.createAuthor(names[0], names[1]);
 		if (aid == -1) {
-			jmsLogger(date, "/rest/authors", "POST", 500);
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "POST", 500);
 			return Response.status(500).entity("{ \" EXCEPTION INSERTING INTO DATABASE! \"}").build();
 		} else if (aid == 0) {
-			jmsLogger(date, "/rest/authors", "POST", 500);
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "POST", 500);
 			return Response.status(500).entity("{ \" ERROR INSERTING INTO DATABASE! \"}").build();
 		}
-		jmsLogger(date, "/rest/authors", "POST", 201);
-		return Response.status(201).header("Location", String.format("%s/%d", _uriInfo.getAbsolutePath().toString(), aid))
+		jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "POST", 201);
+		return Response.status(201)
+				.header("Location", String.format("%s/%d", _uriInfo.getAbsolutePath().toString(), aid))
 				.entity("{ \"Author\" : \"" + aid + "\"}").build();
 	}
 
@@ -223,16 +224,17 @@ public class AuthorResource {
 				// so we directly invoke our serializer so the PUT payload reflects what it
 				// should.
 				String aString = AuthorSerializationHelper.getHelper().generateJSON(a);
-				jmsLogger(date, "/rest/authors", "PUT", 201);
+				jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "PUT", 201);
 				return Response.status(201).entity(aString).build();
 			} else {
-				jmsLogger(date, "/rest/authors", "PUT", 404);
+				jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "PUT", 404);
 				return Response.status(404, "{ \"message \" : \"No such Author " + a.getAuthorId() + "\"}").build();
 			}
 		} catch (Exception exc) {
 			exc.printStackTrace();
-			jmsLogger(date, "/rest/authors", "PUT", 500);
-			return Response.status(500, "{ \"message \" : \"Internal server error deserializing Author JSON\"}").build();
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "PUT", 500);
+			return Response.status(500, "{ \"message \" : \"Internal server error deserializing Author JSON\"}")
+					.build();
 		}
 	}
 
@@ -240,10 +242,10 @@ public class AuthorResource {
 	public Response deleteAuthor(@QueryParam("id") int aid) {
 		String date = timestamp.getDate().toString();
 		if (__bService.deleteAuthor(aid)) {
-			jmsLogger(date, "/rest/authors/?id=" + aid, "DELETE", 204);
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString() + aid, "DELETE", 204);
 			return Response.status(204).build();
 		} else {
-			jmsLogger(date, "/rest/authors/?id=" + aid, "DELETE", 404);
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString() + aid, "DELETE", 404);
 			return Response.status(404, "{ \"message \" : \"No such Author " + aid + "\"}").build();
 		}
 	}
