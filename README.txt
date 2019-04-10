@@ -2,7 +2,7 @@
 Inside the file of Task1.txt is the proper configurations/steps used to test my queries.
 
 *****TASK 2*****
--ActiveMQ-all.jar is the jar file NECESSARY to run this section. Please place it inside of the "lib" folder.
+-ActiveMQ-all-5.15.9.jar is the jar file NECESSARY to run this section. Please place it inside of the "lib" folder.
 -For the consumer, place the same jar file OUTSIDE of the Task2 folder (where the Consumer.java is in). It is NECESSARY to have that jar in the same direcory.
 -Start the ActiveMQ console without any configurations from the default download on activeMQ's website. (this will start the broker so it is necessary in order to test the lab)
 -Start the broker by running "bin/activemq console" under your apachemq folders/installation
@@ -24,4 +24,18 @@ Inside the file of Task1.txt is the proper configurations/steps used to test my 
 *NOTE: All the verbs and status codes are implemented from what was natively placed on the BooktownREST Example. No adjustments or enhancements have been made.
 
 *****TASK 3*****
-Not implemented.
+NOTE: I am using docker toolbox (windows 10 version) and some commands/urls might be a bit different and will try my best to give you the right command
+-Open docker
+-run the activemq broker (this is for the producer to send messages when we hit our endpoints in postman)
+-On the default path (mine is D/Program Files/Docker Toolbox) you will clone my repo to create the image of my application.
+-run "git clone https://github.com/lfajardo20/lab4.git"
+-After you have successfully cloned the repo, cd into Task2 (cd Task2)
+-run "ls" and verify that the source files for booktown are there (e.g lib, properties, src ,build.xml, etc.)
+-If everything looks good, run 'ant build' (this will create the war file that is necessary for when building the image since it is coded in the Dockerfile.)
+-cd back into lab4 (cd ../) where the dockerfile is at.
+-Then run "docker build ." No tags necessary or you can place some if you wish
+-Get the image ID and do "docker run -p 8089:8080 <Image ID>"
+-I currently get an error stating that my sh script couldn't be found evem though its in the same directory. Can't get passed this. No more implementation done.
+-Dockerfile was created
+-Script file was created
+-Appropriate dirs created and copied files appropriately
