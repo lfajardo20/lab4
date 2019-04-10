@@ -20,4 +20,16 @@
 }
 
 *****Body for Question No. 2*****
-
+{
+  stopsByRadius(lat:60.26263,lon:25.116406,radius:300) {
+    edges {
+      node {
+        stop {
+          gtfsId
+          name
+        }
+        distance
+      }
+    }
+  }
+}
