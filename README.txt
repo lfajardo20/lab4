@@ -20,7 +20,8 @@ Inside the file of Task1.txt is the proper configurations/steps used to test my 
 	*In the command line: go to the root of the project where the activemq jar and the consumer.java are at
 	*type "javac -cp activemq-all-5.15.9.jar Consumer.java" to compile the class
 	*Then type "java -cp .; activemq-all-5.15.9.jar Consumer" to run the consumer class and consume a message
- 	*This iteration currently only reads one message //TODO: Change so that it reads all of the enqueue messages
+ 	*The consumer consumes all messages that are enqueue and will wait for 1000 ms for another message and then terminate.
+*NOTE: All the verbs and status codes are implemented from what was natively placed on the BooktownREST Example. No adjustments or enhancements have been made.
 
 *****TASK 3*****
 Not implemented.

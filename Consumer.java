@@ -12,6 +12,9 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 public class Consumer {
+
+    public static Boolean handler = true;
+
     public static void main(String[] args) {
         thread(new HelloWorldConsumer(), false);
         System.out.println("Message Consumed.");
@@ -45,15 +48,17 @@ public class Consumer {
                 // Create a MessageConsumer from the Session to the Topic or Queue
                 MessageConsumer consumer = session.createConsumer(destination);
 
-                // Wait for a message
-                Message message = consumer.receive(1000);
-
-                if (message instanceof TextMessage) {
-                    TextMessage textMessage = (TextMessage) message;
-                    String text = textMessage.getText();
-                    System.out.println("Received: " + text);
-                } else {
-                    System.out.println("Received: " + message);
+                while (true) {
+                    // Wait for a message
+                    Message message = consumer.receive(1000);
+                    if (message instanceof TextMessage) {
+                        TextMessage textMessage = (TextMessage) message;
+                        String text = textMessage.getText();
+                        System.out.println("Received: " + text);
+                    } else {
+                        System.out.println("Received: " + message);
+                        break;
+                    }
                 }
 
                 consumer.close();
