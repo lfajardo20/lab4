@@ -152,7 +152,7 @@ public class AuthorResource {
 		// result.
 		try {
 			String aString = AuthorSerializationHelper.getHelper().generateJSON(author);
-			jmsLogger(date, "/rest/authors/" + aid, "GET", 200);
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "GET", 200);
 			return Response.status(Response.Status.OK).entity(aString).build();
 		} catch (Exception exc) {
 			exc.printStackTrace();
@@ -242,10 +242,10 @@ public class AuthorResource {
 	public Response deleteAuthor(@QueryParam("id") int aid) {
 		String date = timestamp.getDate().toString();
 		if (__bService.deleteAuthor(aid)) {
-			jmsLogger(date, _uriInfo.getAbsolutePath().toString() + aid, "DELETE", 204);
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "DELETE", 204);
 			return Response.status(204).build();
 		} else {
-			jmsLogger(date, _uriInfo.getAbsolutePath().toString() + aid, "DELETE", 404);
+			jmsLogger(date, _uriInfo.getAbsolutePath().toString(), "DELETE", 404);
 			return Response.status(404, "{ \"message \" : \"No such Author " + aid + "\"}").build();
 		}
 	}
