@@ -2,7 +2,7 @@
 FROM tomcat:7
 
 #Working Directory
-WORKDIR d:/School/SER 422/Labs/lab4_lfajardo
+#WORKDIR d:/School/SER 422/Labs/lab4_lfajardo
 
 RUN mkdir /usr/local/tomcat8080/webapps
 
