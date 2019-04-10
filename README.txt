@@ -9,6 +9,7 @@ Inside the file of Task1.txt is the proper configurations/steps used to test my 
 -Start the tomcat servers (8080 and 8081)
 -Start your apache httpd.exe
 -Open google chrome and firefox and type "localhost" on both. (NOTE: dont specify a port just do localhost. This proves thread-safety.)
+-NOTE: Change the build.properties tomcat_webapps path to make it to your particular tomcat
 -"ant deploy" Will deploy the WAR file into the tomcat server.
 -"http://localhost:8080/RestExampleAPI/rest/authors/" This url is the url to be used for the methods on Post Man. (also 8081)
 -Every method invocation send the appropriate message according to the specifications on the lab. Every verb is given based on the verbs from the BooktownREST Example.
